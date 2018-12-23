@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import data from "../images.json";
-import ClickGrid from "./clickGrid";
-import Navbar from "./navbar"
-import Click from "./clicked";
-import Jumbo from "./jumbo";
+import data from "../../images.json";
+import ClickGrid from "../clickGrid";
+import Navbar from "../navbar"
+import Click from "../clicked";
+import Jumbo from "../jumbo";
 
 class Handler extends Component{
   state = {
@@ -16,17 +16,17 @@ class Handler extends Component{
     this.setState({data: this.rand(this.state.data)});
   }
 
-  continue(input){
-    let newRecord = this.state.correct+1
-    if(!(newRecord > this.state.record)){
-      return newRecord = this.state.record
-    };
+  continue=(input)=>{
+    let {record, correct} = this.state
+    const newCorrectCount = correct+1;
+    
+    let newRecord = Math.max(newCorrectCount, record)
 
     this.setState({
+      correct: newCorrectCount,
       data: this.rand(input),
-      correct: this.state.correct+1,
       record: newRecord
-    })
+    });
   };
 
   restart(input){
@@ -58,24 +58,27 @@ class Handler extends Component{
   clickEvent = input =>{
     let guess = false;
     let updateData = this.state.data.map(passed =>{
-      let updateImg = (passed);
-      if(updateImg.id === input && !updateImg.clicked){
-        updateImg.clicked = true;
+      let foo = {...passed}
+      if(foo.id === input && !foo.clicked){
+        foo.clicked = true;
         guess = true;
       }
-      return updateImg
-    })
+      return foo
+    });
+    console.log(input);
+    console.log(updateData);
     guess ? this.continue(updateData):this.restart(updateData);
   };
 
   render(){
+    console.log(this.state)
     return (
       <div>
         <Navbar correct={this.state.correct} record={this.state.record} />
         <Jumbo />
         <ClickGrid>
           {this.state.data.map(image=>(
-            <Click image={image} clickEvent={this.clickEvent}/>
+            <Click image={image} clik={this.clickEvent}/>
           ))}
         </ClickGrid>
       </div>
