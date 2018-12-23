@@ -1,0 +1,62 @@
+[
+  {
+    "id":0,
+    "image":"/images/corgi.jpg",
+    "clicked": false
+  },
+  {
+    "id":1,
+    "image":"/images/docto.jpg",
+    "clicked": false
+  },
+  {
+    "id":2,
+    "image":"/images/frenchie.jpg",
+    "clicked": false
+  },
+  {
+    "id":3,
+    "image":"/images/lab.jpg",
+    "clicked": false
+  },
+  {
+    "id":4,
+    "image":"/images/lick.jpg",
+    "clicked": false
+  },
+  {
+    "id":5,
+    "image":"/images/Marvin.jpg",
+    "clicked": false
+  },
+  {
+    "id":6,
+    "image":"/images/pitbull.jpg",
+    "clicked": false
+  },
+  {
+    "id":7,
+    "image":"/images/pug.jpg",
+    "clicked": false
+  },
+  {
+    "id":8,
+    "image":"/images/puppy.jpg",
+    "clicked": false
+  },
+  {
+    "id":9,
+    "image":"/images/rose.jpg",
+    "clicked": false
+  },
+  {
+    "id":10,
+    "image":"/images/rotty.jpg",
+    "clicked": false
+  },
+  {
+    "id":11,
+    "image":"/images/sleepy.jpg",
+    "clicked": false
+  }
+]
