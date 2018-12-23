@@ -1,23 +1,60 @@
-import React from "react";
-import Component from "react"
+import React, {Component} from "react";
 import data from "../images.json";
-import ClickGrid from "./clickGrid.js";
-import Navbar from "./navbar.js"
-import Click from "./clicked.js";
-import Jumbo from "./jumbo.js";
+import ClickGrid from "./clickGrid";
+import Navbar from "./navbar"
+import Click from "./clicked";
+import Jumbo from "./jumbo";
 
-class Clicker extends Component{
+class Handler extends Component{
   state = {
     correct: 0,
     record: 0,
-    data,
-    chosen:[]
-  }
+    data
+  };
 
   componentDidMount(){
     this.setState({data: this.rand(this.state.data)});
   }
 
+  continue(input){
+    let newRecord = this.state.correct+1
+    if(!(newRecord > this.state.record)){
+      return newRecord = this.state.record
+    };
+
+    this.setState({
+      data: this.rand(input),
+      correct: this.state.correct+1,
+      record: newRecord
+    })
+  };
+
+  restart(input){
+    input = input.map(each =>{
+      each.clicked = false;
+      return each;
+    })
+    this.setState({
+      data: this.rand(input),
+      correct: 0
+    })
+  };
+
+  rand(foo){
+    let currentIndex = foo.length, temp, randomIndex;
+
+    // Knuth Shuffle
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      temp = foo[currentIndex];
+      foo[currentIndex] = foo[randomIndex];
+      foo[randomIndex] = temp;
+    }
+    return foo;
+  };
+  
   clickEvent = input =>{
     let guess = false;
     let updateData = this.state.data.map(passed =>{
@@ -29,7 +66,7 @@ class Clicker extends Component{
       return updateImg
     })
     guess ? this.continue(updateData):this.restart(updateData);
-  }
+  };
 
   render(){
     return (
@@ -37,13 +74,13 @@ class Clicker extends Component{
         <Navbar correct={this.state.correct} record={this.state.record} />
         <Jumbo />
         <ClickGrid>
-          {this.images.map(image=>(
+          {this.state.data.map(image=>(
             <Click image={image} clickEvent={this.clickEvent}/>
           ))}
         </ClickGrid>
       </div>
     );
-  }
+  };
 }
 
-export default Clicker;
+export default Handler;
