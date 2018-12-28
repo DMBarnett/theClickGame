@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import data from "../../images.json";
 import ClickGrid from "../clickGrid";
-import Navbar from "../navbar"
+import Header from "../header"
 import Click from "../clicked";
 import Jumbo from "../jumbo";
 
@@ -74,7 +74,7 @@ class Handler extends Component{
     console.log(this.state)
     return (
       <div>
-        <Navbar correct={this.state.correct} record={this.state.record} />
+        <Header correct={this.state.correct} record={this.state.record} />
         <Jumbo />
         <ClickGrid>
           {this.state.data.map(image=>(
